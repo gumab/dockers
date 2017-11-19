@@ -1,0 +1,19 @@
+filebeat.prospectors:
+  - type: log 
+    tags: [gmkt]
+    multiline.pattern: '^\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\]\[[A-Z]+\]'
+    multiline.negate: true
+    multiline.match: after
+    paths: 
+      - /Users/guma/Development/dockers/my-logstash/samples/gmkt.log
+    
+  - type: log
+    tags: [iac]
+    paths: 
+      - /Users/guma/Development/dockers/my-logstash/samples/iac.log
+
+output.logstash:
+  hosts: ["localhost:5044"]
+
+#multiline patterns
+#https://www.elastic.co/guide/en/beats/filebeat/master/_examples_of_multiline_configuration.html
